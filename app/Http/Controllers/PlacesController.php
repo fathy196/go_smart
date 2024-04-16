@@ -15,10 +15,15 @@ class PlacesController extends Controller
     }
     public function ShowOneCity($cityid)
     {
-        $city = City::find($cityid);
+        $city = City::findOrFail($cityid);
+
         if (!$city) {
-            return " 404";
+            return ['status' => 404];
         }
-        return $city;
+
+        // Retrieve only one landmark associated with the city
+        $landmark = $city->landmarks()->first();
+
+        return ['city' => $city, 'landmark' => $landmark];
     }
 }

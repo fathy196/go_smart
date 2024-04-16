@@ -23,7 +23,6 @@ Route::post('login', [AuthController::class, 'login']);
 Route::get('/Cities/Explore', [PlacesController::class, 'CitiesAction']);
 Route::get('/Cities/Explore/{Cityid}', [PlacesController::class, 'ShowOneCity']);
 
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
