@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PlacesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', [AuthController::class, 'register']);
 
 Route::post('login', [AuthController::class, 'login']);
+
+Route::get('/Cities/Explore', [PlacesController::class, 'CitiesAction']);
+Route::get('/Cities/Explore/{Cityid}', [PlacesController::class, 'ShowOneCity']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
