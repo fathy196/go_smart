@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('landmarks', function (Blueprint $table) {
             $table->id();
-            $table->string('landmark_name');
             $table->string('address');
-            $table->longText('overview')->nullable();
-            $table->dateTime('opening_hours')->nullable();
-            $table->string('admission_fees')->nullable();
+            $table->longText('description')->nullable();
+            $table->longText('image')->nullable();
+            $table->string('landmark_name');
+            $table->string('website')->nullable();
             $table->foreignId('city_id')->constrained('cities');
             $table->timestamps();
         });

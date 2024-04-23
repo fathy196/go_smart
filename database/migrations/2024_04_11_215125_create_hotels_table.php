@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('hotels', function (Blueprint $table) {
             $table->id();
-            $table->string('address');
-            $table->longText('overview')->nullable();
-            $table->double('price')->nullable();
-            $table->double('total_score');
+            $table->string('hotel_name');
+            $table->longText('description')->nullable();
+            $table->double('rating');
             $table->string('google_map_link')->nullable();
             $table->string('website')->nullable();
             $table->foreignId('city_id')->constrained('cities');

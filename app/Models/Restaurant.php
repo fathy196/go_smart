@@ -18,4 +18,12 @@ class Restaurant extends Model
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+    // public function reviews()
+    // {
+    //     return $this->morphMany(Review::class, 'reviewable');
+    // }
+    public function resturantreview()
+    {
+        return $this->hasMany(ResturantReview::class, 'resturant_id');
+    }
 }

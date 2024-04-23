@@ -18,4 +18,13 @@ class Hotel extends Model
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+    // public function reviews()
+    // {
+    //     return $this->morphMany(Review::class, 'reviewable');
+    // }
+
+    public function hotelreview()
+    {
+        return $this->hasMany(HotelReview::class);
+    }
 }

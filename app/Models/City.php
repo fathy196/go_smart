@@ -26,4 +26,12 @@ public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+    // public function reviews()
+    // {
+    //     return $this->morphMany(Review::class, 'reviewable');
+    // }
+    public function cityreview()
+    {
+        return $this->hasMany(CityReview::class);
+    }
 }

@@ -18,4 +18,13 @@ class Landmark extends Model
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+    // public function reviews()
+    // {
+    //     return $this->morphMany(Review::class, 'reviewable');
+    // }
+
+    public function landmarkreview()
+    {
+        return $this->hasMany(LandmarkReview::class);
+    }
 }

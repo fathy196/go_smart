@@ -11,22 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('hotel_reviews', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('reviewable_id');
-            $table->string('reviewable_type');
+            $table->unsignedBigInteger('hotel_id');
+            $table->unsignedBigInteger('user_id');
             $table->text('comment')->nullable();
             $table->float('rating', 3, 1);
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('hotel_id')->references('id')->on('hotels');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('hotel_reviews');
     }
 };
