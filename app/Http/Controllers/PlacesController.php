@@ -28,7 +28,8 @@ class PlacesController extends Controller
         $landmark = $city->landmarks()->first();
         $restaurant = $city->restaurants()->first();
         $hotel = $city->hotels()->first();
-        return ['city' => $city, 'landmark' => $landmark, 'restaurant' => $restaurant, 'hotel' => $hotel];
+        $cityreview = $city->cityreview()->first();
+        return ['city' => $city, 'landmark' => $landmark, 'restaurant' => $restaurant, 'hotel' => $hotel, 'cityreview' => $cityreview];
     }
 
     public function LandmarksAction()
@@ -44,7 +45,8 @@ class PlacesController extends Controller
         if (!$landmarkid) {
             return ['status' => 404];
         }
-        return $landmark;
+        $landmarkreview = $landmark->landmarkreview()->first();
+        return ['landmark' => $landmark, 'landmarkreview' => $landmarkreview];
     }
     public function ResturantsAction()
     {
@@ -59,7 +61,8 @@ class PlacesController extends Controller
         if (!$resturantid) {
             return ['status' => 404];
         }
-        return $resturant;
+        $resturantreview = $resturant->resturantreview()->first();
+        return ['resturant' => $resturant, 'resturantreview' => $resturantreview];
     }
     public function HotelsAction()
     {
@@ -74,7 +77,8 @@ class PlacesController extends Controller
         if (!$hotelid) {
             return ['status' => 404];
         }
-        return $hotel;
+        $hotelreview = $hotel->hotelreview()->first();
+        return ['hotel' => $hotel, 'hotelreview' => $hotelreview];
     }
     // public function AllHotelsAction()
     // {
