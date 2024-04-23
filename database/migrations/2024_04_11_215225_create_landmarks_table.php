@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('landmarks', function (Blueprint $table) {
             $table->id();
-            $table->string('address');
-            $table->longText('description')->nullable();
             $table->longText('image')->nullable();
-            $table->string('landmark_name');
-            $table->string('website')->nullable();
-            $table->foreignId('city_id')->constrained('cities');
+            $table->string('landmark_name')->nullable();
+            $table->longText('description')->nullable();
+            $table->text('address')->nullable();
+            $table->string('city')->nullable();
+            // $table->foreignId('city_id')->constrained('cities');
+            $table->foreignId('city_id')->references('id')->on('cities')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

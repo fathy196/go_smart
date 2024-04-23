@@ -7,7 +7,7 @@ use App\Models\LandmarkReview;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ReviewLandmark extends Controller
+class LandmarkReviewController extends Controller
 {
     public function AddReviewToLandmark(Request $request, $landmarkid)
     {

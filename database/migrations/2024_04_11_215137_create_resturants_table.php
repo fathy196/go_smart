@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('resturants', function (Blueprint $table) {
             $table->id();
-            $table->string('address');
+            $table->text('address')->nullable();
+            $table->string('city')->nullable();
             $table->longText('description')->nullable();
             $table->longText('image')->nullable();
-            $table->string('resturant_name');
-            $table->double('rating');
-            $table->string('website')->nullable();
-            $table->foreignId('city_id')->constrained('cities');
+            $table->string('resturant_name')->nullable();
+            $table->string('rating')->nullable();
+            $table->text('website')->nullable();
+            // $table->foreignId('city_id')->constrained('cities');
+            $table->foreignId('city_id')->references('id')->on('cities')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

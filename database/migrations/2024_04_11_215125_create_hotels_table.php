@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('hotels', function (Blueprint $table) {
             $table->id();
-            $table->string('hotel_name');
+            $table->string('city')->nullable();
+            $table->longText('image1')->nullable();
+            $table->longText('image2')->nullable();
+            $table->longText('image3')->nullable();
+            $table->string('hotel_name')->nullable();
+            $table->string('rating')->nullable();
+            $table->text('url_google_map')->nullable();
+            $table->text('website')->nullable();
+            $table->foreignId('city_id')->references('id')->on('cities')->onDelete('cascade')->onUpdate('cascade');
             $table->longText('description')->nullable();
-            $table->double('rating');
-            $table->string('google_map_link')->nullable();
-            $table->string('website')->nullable();
-            $table->foreignId('city_id')->constrained('cities');
             $table->timestamps();
         });
     }

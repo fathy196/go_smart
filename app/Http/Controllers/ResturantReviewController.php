@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Hotel;
-use App\Models\HotelReview;
+use App\Models\Restaurant;
+use App\Models\ResturantReview;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ReviewHotel extends Controller
+class ResturantReviewController extends Controller
 {
-    public function AddReviewToHotel(Request $request, $hotelId)
+    public function AddReviewToResturant(Request $request, $resturantid)
     {
         $rules = [
             'rating' => 'required|numeric|min:1|max:5',
@@ -23,8 +23,8 @@ class ReviewHotel extends Controller
                 'errors' => $validator->errors()
             ], 422);
         }
-        $review = new HotelReview();
-        $review->hotel_id = $hotelId;
+        $review = new ResturantReview();
+        $review->resturant_id = $resturantid;
         $review->user_id = auth()->id(); // Ensure you have user authentication in place
         $review->rating = $request->input('rating');
         $review->comment = $request->input('comment');
@@ -37,13 +37,13 @@ class ReviewHotel extends Controller
     }
 
     // Method to retrieve reviews for a specific city
-    public function GetReviewsForHotel($hotelId)
+    public function GetReviewsForResturant($resturantid)
     {
-        $hotel = Hotel::findOrFail($hotelId);
-        $reviews = $hotel->hotelreview()->get();
+        $resturant = Restaurant::findOrFail($resturantid);
+        $reviews =  $resturant->resturantreview()->get();
 
         return response()->json([
-            'hotel' => $hotel,
+            'resturant' => $resturant,
             'reviews' => $reviews
         ], 200);
 }

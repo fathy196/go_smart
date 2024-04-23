@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->string('city_name');
+            $table->string('city_name')->nullable();
             $table->longText('description')->nullable();
-            $table->string('google_map_link')->nullable();
+            $table->string('url_google_map')->nullable();
             $table->timestamps();
         });
     }

@@ -2,7 +2,11 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CityReview;
+use App\Http\Controllers\HotelReviewController;
+use App\Http\Controllers\ImportController;
+use App\Http\Controllers\LandmarkReviewController;
 use App\Http\Controllers\PlacesController;
+use App\Http\Controllers\ResturantReviewController;
 use App\Http\Controllers\ReviewCity;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ReviewHotel;
@@ -47,20 +51,24 @@ Route::get('/Hotels/Explore/{Hotelid}', [PlacesController::class, 'ShowOneHotel'
 
 // import hotels
 // Route::get('/Hotels', [PlacesController::class, 'AllHotelsAction']);
-
-
 // Route::post('/Cities/{cityId}/AddReviews', [ReviewController::class, 'addReviewToCity']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/Cities/AddCityReview/{cityid}', [ReviewCity::class, 'AddReviewToCity']);
-    Route::post('/Hotels/AddHotelReview/{hotelid}', [ReviewHotel::class, 'AddReviewToHotel']);
-    Route::post('/Landmarks/AddLandmarkReview/{Landmarkid}', [ReviewLandmark::class, 'AddReviewToLandmark']);
-    Route::post('/Resturants/AddResturantReview/{Resturantid}', [ReviewResturant::class, 'AddReviewToResturant']);
+    Route::post('/Hotels/AddHotelReview/{hotelid}', [HotelReviewController::class, 'AddReviewToHotel']);
+    Route::post('/Landmarks/AddLandmarkReview/{Landmarkid}', [LandmarkReviewController::class, 'AddReviewToLandmark']);
+    Route::post('/Resturants/AddResturantReview/{Resturantid}', [ResturantReviewController::class, 'AddReviewToResturant']);
 });
 
 Route::get('/Cities/CityReview/{cityid}', [ReviewCity::class, 'GetReviewsForCity']);
-Route::get('/Hotels/HotelReview/{hotelid}', [ReviewHotel::class, 'GetReviewsForHotel']);
-Route::get('/Landmarks/LandmarkReview/{Landmarkid}', [ReviewLandmark::class, 'GetReviewsForLandmark']);
-Route::get('/Resturants/ResturantReview/{Resturantid}', [ReviewResturant::class, 'GetReviewsForResturant']);
+Route::get('/Hotels/HotelReview/{hotelid}', [HotelReviewController::class, 'GetReviewsForHotel']);
+Route::get('/Landmarks/LandmarkReview/{Landmarkid}', [LandmarkReviewController::class, 'GetReviewsForLandmark']);
+Route::get('/Resturants/ResturantReview/{Resturantid}', [ResturantReviewController::class, 'GetReviewsForResturant']);
 
 
+Route::controller(ImportController::class)->group(function() {
+Route::post('/Import/City', 'ImportCity');
+Route::post('/Import/Hotel', 'ImportHotel');
+Route::post('/Import/Landmark', 'ImportLandmark');
+Route::post('/Import/Resturant',  'ImportResturant');
+});
